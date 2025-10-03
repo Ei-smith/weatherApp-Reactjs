@@ -1,0 +1,32 @@
+name: new-workflow
+on: [push,workflow-dispatch]
+jobs:
+  test-jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get the code/clone
+        uses: action/checkout@v5
+      - name: install nodejs
+        uses: actions/setup-node@v5
+        with:
+        node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: Test Application
+        run: npm test
+  deploy-jobs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get the code/clone
+        uses: actions/checkout@v5
+      - name: install nodejs
+        uses: actions/setup-node@v5
+        with:
+        node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: successful
+        run: echo "Build Successfully"
+        
